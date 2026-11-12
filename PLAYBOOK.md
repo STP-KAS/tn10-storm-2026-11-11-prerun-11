@@ -48,7 +48,14 @@ Not a gate. A status line, so nobody guesses. Read on 2026-11-12 between 08:05Z 
 
 ## Offline rehearsal, recorded before `PRE-RUN-OPEN`
 
-REHEARSAL_PLACEHOLDER
+Rehearsal A (p11-a), 2026-11-12 08:23:00Z to 08:23:12Z (desk, Brussels 09:23). It stopped at genesis (`HELD at genesis`, runner exit 3): I had copied the real `submit-sixteen.mjs` into the rehearsal's `six/` instead of the stand-in one. That script threw while building the transactions, before its submit line, so nothing was submitted to any node. Kept here as a record of the mistake, not hidden.
+
+Rehearsal B (p11-b), 2026-11-12 08:24:31Z to 08:55:01Z (desk, Brussels 09:24 to 09:55), with pre-run 10's stand-in `submit-sixteen.mjs`. The real pre-run 11 desk runner, counter, payment sender, rehearsal family sender and the new read-only mempool probe ran against pre-run 9's stand-in node on the desk, with a local bare origin. Short times: BASE 3 minutes, RETURN 3 minutes, 2-minute tail.
+
+- BASE published as `OBSERVATION` (offer 0, families only). HOLD-1 at 400 `MET` (24,007 / 23,976 / 24,076 / 23,969 submit-OK), HOLD-2 at 700 `MET` (42,175 / 41,938 / 41,847 in the last three minutes), HOLD-3 at 1,013 `MET` (60,917 / 60,758 / 60,710 / 60,728). HOLD-4 pinned 08:48Z and ran at 1,013 (`OBSERVATION`, 60,778). The rate went to 0 at 08:49:12Z and RETURN published as `OBSERVATION` (0 submit-OK, families only).
+- The runner published `counts/chain/TIMELINE.md`, the new `counts/chain/MEMPOOL.md` and `logs/METHOD.md`, and exited 0. Each step file carried its "Mempool and template, desk node (probe)" table. No rehearsal process was left running.
+- The probe in the rehearsal read the real desk private TN10 node (read-only: getInfo, getFeeEstimate, getMempoolEntries, getBlockTemplate, never submitted), so its rows show the other sender's heavy stream (about 266,600 storage mass per transaction, fee rate 100, one in each template) and no families of ours (they went to the stand-in).
+- What the rehearsal did not exercise: the public-mempool columns stay empty there (the stand-in's node urls are not wss, so the probe skips them; the table then shows one empty trailing column). No `REORG` line. The stand-in lands hops by its own rule, so its cohort numbers are not a network result.
 
 ## Status after the live run
 
