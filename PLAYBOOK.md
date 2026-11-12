@@ -59,7 +59,13 @@ Rehearsal B (p11-b), 2026-11-12 08:24:31Z to 08:55:01Z (desk, Brussels 09:24 to 
 
 ## Status after the live run
 
-AFTER_PLACEHOLDER
+Read on 2026-11-12 between 09:46Z and 09:58Z. Not a gate.
+
+- Desk: the runner (started 09:00:00Z) ran BASE to RETURN without a repair or a restart and ended at 09:46:41Z after publishing `counts/chain/TIMELINE.md`, `counts/chain/MEMPOOL.md` and `logs/METHOD.md`. Its probe (`PROBE_STOP` 09:46:32Z), counter (`COUNTER_STOP` 09:46:32Z), family sender, coordinator, broker (`builder exit 0`) and six payment senders exited with it; no runner process was left on the desk. The pre-open probe had been stopped at 08:58:22Z and the history scan had finished before the open. The private TN10 kaspad was not stopped and is still up, synced. No devnet, `KaspaPublicNode` or miner was started; the faucet process was not touched.
+- Mini: the runner (MINI-ARMED 08:59:21Z) published a second read for every step and ended at 09:56:38Z after its 15-minute tail (`RUNNER end`); no runner process was left on Mini. Removals after a minute had closed: 0. Its TN10 kaspad was not wiped or restarted and is still up.
+- Bot: the waiter read HOLD-3 on origin at 09:25:27Z, pinned 09:29Z, found no free node at 09:28:31Z, and published `NO SEND no-free-node` (a161644, on origin 09:30:05Z). The waiter and its finish step exited; no bot process is left. Nothing was sent by the bot.
+- Lane and pile after the run: lane 5,510 coins, 215,651 usable tKAS, above the abort line, read by status.mjs at about 09:48Z (5,511 coins and 239,371 usable tKAS after the re-funding at 08:22Z); payment key 8,400 coins (185,828.62 tKAS at the end snapshots). Keys 1–15 have no genesis coin left; a next repo funds them again.
+- No `FAILED` file was written. Results: [logs/LESSONS.md](logs/LESSONS.md), [logs/METHOD.md](logs/METHOD.md), [counts/chain/MEMPOOL.md](counts/chain/MEMPOOL.md), and the pre-run 11 block in [locks/LOCKED.md](locks/LOCKED.md).
 
 ## When something breaks
 
